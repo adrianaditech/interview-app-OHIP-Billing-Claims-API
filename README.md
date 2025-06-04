@@ -153,6 +153,12 @@ prisma/
 }
 </code></pre>
 
+<pre><code>async createClaim(dto: CreateClaimDto, paymentType: PaymentType) {
+  const adapter = this.factory.getAdapter(paymentType);
+  return adapter.createClaim(dto);
+}
+</code></pre>
+
 <p>This allows routing claims through different pricing or approval workflows.</p>
 
 <h3>💰 Fee Modifiers (After-hours, Emergency, etc.)</h3>

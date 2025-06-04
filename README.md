@@ -134,13 +134,62 @@ prisma/
     <li>Swagger to keep API docs always up to date</li>
     <li>SQLite default for quick dev, easily switched to MySQL or Postgres</li>
   </ul>
+<hr />
 
-  <hr />
+<h2>🧩 Scalability & Extensibility</h2>
 
-  <h2>📄 License</h2>
-  <p>MIT License © 2024 pSkywalker</p>
+<p>
+  This backend is built with modularity and clean separation of concerns, enabling future billing enhancements with minimal friction. The architecture supports easy implementation of:
+</p>
 
-  <hr />
+<h3>🔒 Private Pay Support</h3>
+<p>
+  Add private billing support by extending the <code>Claim</code> model with a <code>paymentType</code> field:
+</p>
+
+<pre><code>enum PaymentType {
+  OHIP = 'OHIP',
+  PRIVATE = 'PRIVATE',
+}
+</code></pre>
+
+<p>This allows routing claims through different pricing or approval workflows.</p>
+
+<h3>💰 Fee Modifiers (After-hours, Emergency, etc.)</h3>
+<p>
+  To support OHIP billing modifiers or premiums, a new relation model can be introduced:
+</p>
+
+<pre><code>model FeeModifier {
+  id          Int     @id @default(autoincrement())
+  claimId     Int
+  description String
+  amount      Float
+  claim       Claim   @relation(fields: [claimId], references: [id])
+}
+</code></pre>
+
+<p>
+  Modifiers could be stacked and calculated dynamically during submission or reporting.
+</p>
+
+<h3>🧱 Modular Domain-Driven Design</h3>
+<ul>
+  <li>Each domain (<code>claims</code>, <code>ohip</code>, <code>reports</code>) has its own module, DTOs, repository, and service.</li>
+  <li>Easy to introduce new billing domains (e.g. <code>insurance</code>, <code>invoice</code>, <code>patients</code>) as discrete modules.</li>
+</ul>
+
+<h3>🌐 API Contracts via DTOs</h3>
+<ul>
+  <li>DTOs ensure flexible request/response shaping.</li>
+  <li>Validation pipes support seamless extension without weakening input constraints.</li>
+</ul>
+
+<hr />
+
+<p><strong>💡 With this structure, it's easy to extend the system to support multiple payers, rule-based pricing, and future billing regulation changes.</strong></p>
+
+<hr />
 
   <h2>🙋‍♂️ Author</h2>
   <p>pSkywalker</p>

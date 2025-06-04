@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model OHIPCode {
+  id          Int     @id @default(autoincrement())
+  code        String  @unique       // e.g. "A001"
+  description String
+  amount      Float               // OMA-approved pricing
+  claims      Claim[]             // relation to claims using this code
+}
+
+model Claim {
+  id            Int       @id @default(autoincrement())
+  patientId     String
+  doctorId      String
+  visitDate     DateTime
+  serviceCodeId Int
+  serviceCode   OHIPCode  @relation(fields: [serviceCodeId], references: [id])
+  location      String
+  diagnosisCode String?           // optional
+  notes         String?           // optional
+  status        ClaimStatus       @default(DRAFT)
+  amount        Float             // auto-filled from OHIPCode.amount at creation
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+enum ClaimStatus {
+  DRAFT
+  SUBMITTED
+  PAID
+  REJECTED
+}

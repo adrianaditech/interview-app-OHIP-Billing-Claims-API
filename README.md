@@ -86,8 +86,8 @@ npm run seed
   <h3>Start development server</h3>
   <pre><code>npm run start:dev
 </code></pre>
-  <p>Access API at <a href="http://localhost:3000" target="_blank">http://localhost:3000</a><br />
-  Swagger UI at <a href="http://localhost:3000/api" target="_blank">http://localhost:3000/api</a></p>
+  <p>Access API at <a href="http://localhost:4000" target="_blank">http://localhost:3000</a><br />
+  Swagger UI at <a href="http://localhost:4000/api" target="_blank">http://localhost:3000/api</a></p>
 
   <hr />
 

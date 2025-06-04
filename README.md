@@ -86,8 +86,8 @@ npm run seed
   <h3>Start development server</h3>
   <pre><code>npm run start:dev
 </code></pre>
-  <p>Access API at <a href="http://localhost:4000" target="_blank">http://localhost:3000</a><br />
-  Swagger UI at <a href="http://localhost:4000/api" target="_blank">http://localhost:3000/api</a></p>
+  <p>Access API at <a href="http://localhost:4000" target="_blank">http://localhost:4000</a><br />
+  Swagger UI at <a href="http://localhost:4000/api" target="_blank">http://localhost:4000/api</a></p>
 
   <hr />
 
@@ -104,9 +104,9 @@ npm run seed
     <tr><td>POST</td><td><code>/claims</code></td><td>Create a new billing claim</td></tr>
     <tr><td>GET</td><td><code>/claims</code></td><td>List claims with optional filters</td></tr>
     <tr><td>PATCH</td><td><code>/claims/:id/status</code></td><td>Update status of a claim</td></tr>
+    <tr><td>GET</td><td><code>claims/reports/summary</code></td><td>Get daily summary report</td></tr>
     <tr><td>GET</td><td><code>/service-codes</code></td><td>Retrieve OHIP service codes</td></tr>
     <tr><td>GET</td><td><code>/service-codes/{code}</code></td><td>Retrieve details of a specific OHIP service code</td></tr>
-    <tr><td>GET</td><td><code>/reports/summary</code></td><td>Get daily summary report</td></tr>
   </tbody>
 </table>
 

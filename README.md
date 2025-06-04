@@ -1,98 +1,148 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <h1>🏥 Ontario Medical Billing Claims API</h1>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+  <p>
+    <a class="badge" href="https://nestjs.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.shields.io/badge/NestJS-Active-red?logo=nestjs" alt="NestJS" />
+    </a>
+    <a class="badge" href="https://www.prisma.io/" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.shields.io/badge/Prisma-ORM-blue?logo=prisma" alt="Prisma" />
+    </a>
+    <a class="badge" href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">
+      <img src="https://img.shields.io/badge/Node.js-v18.x-green?logo=node.js" alt="Node.js" />
+    </a>
+  </p>
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <hr />
 
-## Description
+  <h2>📋 Overview</h2>
+  <p>
+    This backend service manages <strong>Ontario medical billing claims</strong> for clinics using <strong>OHIP service codes</strong> and their corresponding <strong>OMA-approved pricing</strong>.
+  </p>
+  <p>
+    Built with <strong>NestJS</strong>, <strong>Prisma</strong>, and <strong>SQLite/MySQL</strong> (configurable), it exposes REST APIs to:
+  </p>
+  <ul>
+    <li>Create billing claims</li>
+    <li>List/filter claims</li>
+    <li>Update claim statuses</li>
+    <li>Retrieve OHIP service codes</li>
+    <li>Generate daily summary reports</li>
+  </ul>
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+  <hr />
 
-## Project setup
+  <h2>🚀 Features</h2>
+  <ul>
+    <li>✅ Clean modular architecture with Repository/Service patterns</li>
+    <li>✅ Input validation with <code>class-validator</code> and DTOs</li>
+    <li>✅ Auto-generated API docs with <strong>Swagger</strong></li>
+    <li>✅ Database schema using Prisma ORM</li>
+    <li>✅ Seeded OHIP codes with OMA pricing</li>
+    <li>✅ Error handling and meaningful HTTP responses</li>
+  </ul>
 
-```bash
-$ npm install
-```
+  <hr />
 
-## Compile and run the project
+  <h2>🛠️ Setup &amp; Installation</h2>
 
-```bash
-# development
-$ npm run start
+  <h3>Prerequisites</h3>
+  <ul>
+    <li>Node.js v18+</li>
+    <li>npm or yarn</li>
+    <li>(Optional) MySQL server if you want to switch from SQLite</li>
+  </ul>
 
-# watch mode
-$ npm run start:dev
+  <h3>Clone repo</h3>
+  <pre><code>git clone https://github.com/pSkywalker/interview-app-OHIP-Billing-Claims-API.git
+cd interview-app-OHIP-Billing-Claims-API
+</code></pre>
 
-# production mode
-$ npm run start:prod
-```
+  <h3>Install dependencies</h3>
+  <pre><code>npm install
+# or
+yarn install
+</code></pre>
 
-## Run tests
+  <h3>Configure environment</h3>
+  <p>Create <code>.env</code> in root with:</p>
+  <pre><code>DATABASE_URL="file:./dev.db"       # For SQLite (default)
+# or
+# DATABASE_URL="mysql://user:password@localhost:3306/dbname"  # For MySQL
+PORT=3000
+</code></pre>
 
-```bash
-# unit tests
-$ npm run test
+  <h3>Run migrations &amp; seed data</h3>
+  <pre><code>npx prisma migrate dev --name init
+npm run seed
+</code></pre>
 
-# e2e tests
-$ npm run test:e2e
+  <h3>Start development server</h3>
+  <pre><code>npm run start:dev
+</code></pre>
+  <p>Access API at <a href="http://localhost:3000" target="_blank">http://localhost:3000</a><br />
+  Swagger UI at <a href="http://localhost:3000/api" target="_blank">http://localhost:3000/api</a></p>
 
-# test coverage
-$ npm run test:cov
-```
+  <hr />
 
-## Deployment
+  <h2>📚 API Endpoints</h2>
+  <table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Endpoint</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>POST</td><td><code>/claims</code></td><td>Create a new billing claim</td></tr>
+    <tr><td>GET</td><td><code>/claims</code></td><td>List claims with optional filters</td></tr>
+    <tr><td>PATCH</td><td><code>/claims/:id/status</code></td><td>Update status of a claim</td></tr>
+    <tr><td>GET</td><td><code>/service-codes</code></td><td>Retrieve OHIP service codes</td></tr>
+    <tr><td>GET</td><td><code>/service-codes/{code}</code></td><td>Retrieve details of a specific OHIP service code</td></tr>
+    <tr><td>GET</td><td><code>/reports/summary</code></td><td>Get daily summary report</td></tr>
+  </tbody>
+</table>
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+  <hr />
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+  <h2>🧩 Project Structure</h2>
+  <pre><code>src/
+├── claims/                # Claim module (controller, service, dto, repo)
+├── ohip-codes/            # OHIP codes module
+├── reports/               # Report generation module
+├── common/                # Shared utilities, exceptions, pipes
+├── main.ts                # App bootstrap with validation and Swagger
+├── app.module.ts          # Root module
+prisma/
+├── schema.prisma          # Prisma schema file
+</code></pre>
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+  <hr />
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+  <h2>📝 Design Decisions</h2>
+  <ul>
+    <li><strong>Repository/Service Pattern</strong> for clear separation of concerns</li>
+    <li><strong>DTOs + Validation Pipes</strong> for robust input validation</li>
+    <li>Prisma for <strong>type-safe database access</strong> and easy migrations</li>
+    <li>Swagger to keep API docs always up to date</li>
+    <li>SQLite default for quick dev, easily switched to MySQL or Postgres</li>
+  </ul>
 
-## Resources
+  <hr />
 
-Check out a few resources that may come in handy when working with NestJS:
+  <h2>📄 License</h2>
+  <p>MIT License © 2024 pSkywalker</p>
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+  <hr />
 
-## Support
+  <h2>🙋‍♂️ Author</h2>
+  <p>pSkywalker</p>
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  <hr />

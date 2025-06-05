@@ -73,9 +73,7 @@ yarn install
   <h3>Configure environment</h3>
   <p>Create <code>.env</code> in root with:</p>
   <pre><code>DATABASE_URL="file:./dev.db"       # For SQLite (default)
-# or
-# DATABASE_URL="mysql://user:password@localhost:3306/dbname"  # For MySQL
-PORT=3000
+
 </code></pre>
 
   <h3>Run migrations &amp; seed data</h3>
